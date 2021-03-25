@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from apps.users.models.following import FollowRequest
+from apps.users.models.profile import Profile
+
+admin.site.register(Profile)
+admin.site.register(FollowRequest)
