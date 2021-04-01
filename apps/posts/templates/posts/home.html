@@ -25,7 +25,8 @@
                             <a class="text-dark"
                                href="{{ post.user_name.profile.get_absolute_url }}"><b>{{ post.user_name }}</b></a>
                             <br/><small class="text-muted">Posted on {{ post.date_posted }}</small>
-                            {# recently and thoese things  #}
+                            <br/><small class="text-muted">Posted {{ post.time_left_from_post_date }}</small>
+
                             <br/><br/>
                             <p class="card-text text-dark">{{ post.description }}</p>
                         </div>
