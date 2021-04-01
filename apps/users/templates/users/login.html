@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
 </head>
 <body>
-{% load static %} {% load crispy_forms_tags %}
+{% extends "posts/layout.html" %} {% load crispy_forms_tags %}
 {% block cssfiles %} {% endblock cssfiles %} {% block content %}
     <br/>
     <div class="container">
@@ -32,8 +32,8 @@
                                 <a
                                         class="btn btn-lg btn-warning btn-block text-uppercase"
                                         href="{% url 'password_reset' %}"
-                                >Forgot Password?</a
-                                >
+                                >Forgot Password?
+                                </a>
                             </div>
                             <small
                             ><p class="text-center">

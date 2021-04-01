@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from .models.following import FollowRequest
 from .models.profile import Profile
+from ..posts.models.post import Post
 
 User = get_user_model()
 
@@ -102,8 +103,8 @@ def accept_follow_request(request, id):
     frequest = FollowRequest.objects.filter(from_user=from_user, to_user=request.user).first()
     user1 = frequest.to_user
     user2 = from_user
-    user1.profile.friends.add(user2.profile)
-    user2.profile.friends.add(user1.profile)
+    user1.profile.followers.add(user2.profile)
+    user2.profile.followers.add(user1.profile)
     if (FollowRequest.objects.filter(from_user=request.user, to_user=from_user).first()):
         request_rev = FollowRequest.objects.filter(from_user=request.user, to_user=from_user).first()
         request_rev.delete()
@@ -139,7 +140,7 @@ def profile_view(request, slug):
     u = p.user
     sent_follow_requests = FollowRequest.objects.filter(from_user=p.user)
     rec_follow_requests = FollowRequest.objects.filter(to_user=p.user)
-    # //**//
+
     user_posts = Post.objects.filter(user_name=u)
 
     followers = p.followers.all()
@@ -222,23 +223,22 @@ def the_user_profile(request):
     the_user = p.user
     sent_follow_requests = FollowRequest.objects.filter(from_user=the_user)
     rec_follow_requests = FollowRequest.objects.filter(to_user=the_user)
-    # //**//
     user_posts = Post.objects.filter(user_name=the_user)
     followers = p.followers.all()
 
     # # is this user the user follower
     # button_status = 'none'
-    # if p not in request.user.profile.friends.all():
+    # if p not in request.user.profile.followers.all():
     #     button_status = 'not_friend'
     #
     #     # if we have sent him a friend request
-    #     if len(FriendRequest.objects.filter(
+    #     if len(FollowRequest.objects.filter(
     #             from_user=request.user).filter(to_user=you)) == 1:
-    #         button_status = 'friend_request_sent'
+    #         button_status = 'follow_request_sent'
     #
-    #     if len(FriendRequest.objects.filter(
+    #     if len(FollowRequest.objects.filter(
     #             from_user=p.user).filter(to_user=request.user)) == 1:
-    #         button_status = 'friend_request_received'
+    #         button_status = 'follow_request_received'
 
     context = {
         'u': the_user,

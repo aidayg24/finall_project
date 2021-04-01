@@ -9,7 +9,7 @@ from common.validators import check_website
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.png', upload_to='profile_pics')
+    image = models.ImageField(default='media/profile_pics/default.png', upload_to='profile_pics')
     slug = AutoSlugField(populate_from='user')
     followers = models.ManyToManyField("Profile", blank=True)
 

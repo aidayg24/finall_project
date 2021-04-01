@@ -6,9 +6,9 @@ from django.utils import timezone
 
 class Post(models.Model):
     description = models.CharField('Caption', max_length=255, blank=True)
-    pic = models.ImageField('Image', upload_to='path/to/img', blank=True, null=True)
+    pic = models.ImageField(upload_to='post/pic', blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
-    user_name = models.ForeignKey('User', User, on_delete=models.CASCADE)
+    user_name = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.CharField('Location', max_length=200, blank=True)
     tags = models.CharField('Tags', max_length=100, blank=True)
 
