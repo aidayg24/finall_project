@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import ListView, UpdateView
 
 from .forms import NewCommentForm, NewPostForm
+from .models.comment import Comments
 from .models.like import Like
 from .models.post import Post
 
