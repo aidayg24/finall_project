@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
-from apps.posts.models.post import Post
+from nstagram.apps.posts.models.post import Post
 
 
 class Comments(models.Model):

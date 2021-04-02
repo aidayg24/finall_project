@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from apps.posts.models.post import Post
+from nstagram.apps.posts.models.post import Post
 
 
 class Like(models.Model):
