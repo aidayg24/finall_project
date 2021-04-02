@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class Post(models.Model):
     description = models.CharField('Caption', max_length=255, blank=True)
-    pic = models.ImageField(default='media/profile_pics/default.png',upload_to='post/pic', blank=True, null=True)
+    pic = models.ImageField(default='media/profile_pics/default.png', upload_to='post/pic', blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     user_name = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.CharField('Location', max_length=200, blank=True)
@@ -32,7 +32,10 @@ class Post(models.Model):
             return str(duration.seconds // 3600) + str('  hours ago')
 
         if duration.days < 32:
-            return str(duration.days) + str(' days ago ')
+            if duration.days == 1:
+                return str(duration.days) + str(' day ago ')
+            else:
+                return str(duration.days) + str(' days ago ')
 
         if duration.days < 365:
             months = duration.days // 30
